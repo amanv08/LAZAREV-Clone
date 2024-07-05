@@ -15,7 +15,7 @@ navAction.addEventListener("mouseenter", function(){
     })
     tl.from(".nav-part2 h5 span", {
         y:25,
-        // duration : 0.01,
+        duration : 0.01,
         stagger: {
             amount:0.3
         }
@@ -37,7 +37,7 @@ navAction.addEventListener("mouseleave", function(){
     })
     tl2.from(".nav-part2 h5 span", {
         y:25,
-        // duration : 0.01,
+        duration : 0.01,
         stagger: {
             amount:0.3
         }
@@ -47,33 +47,93 @@ navAction.addEventListener("mouseleave", function(){
 
 }
 
-navAnimation()
+// navAnimation()
 
-let btn = document.querySelector("button")
+function btnAnimation(){
+    let btn = document.querySelector("button")
 
 btn.addEventListener("mouseenter", function(){
-    let tl = gsap.timeline()
-    tl.to("nav button", {
-        backgroundColor :"#111"
+    gsap.to("nav button", {
+        backgroundColor: "#111"
     })
-    tl.to("nav button svg", {
+    gsap.to("nav button #btn-div", {
         backgroundColor : "#0ba34e",
-        borderRadius :"50%",
-        height : "1.8vw",
-        width :"1.8vw",
-        stagger: {
-            amount : 0.01
-        }
+        borderRadius : "10px",
+        height:"1.8vw",
+        width : "1.8vw"
+    })
+    gsap.to("nav button svg", {
+        y:6,
+        x:-1
     })
 })
 
 btn.addEventListener("mouseleave", function(){
-    let tl = gsap.timeline()
-    tl.to("nav button", {
-        backgroundColor :"#0ba34e"
+    gsap.to("nav button", {
+        backgroundColor:"#0ba34e"
     })
-    tl.to("nav button svg", {
-        height: "1vw",
-        width:"1vw"
+    gsap.to("nav button #btn-div",{
+        backgroundColor : "#0ba34e",
+        borderRadius : "0px",
+        height: "0vw",
+        width : "0vw",
+    })
+    gsap.to("nav button svg", {
+        y:-8,
+        x:-1
     })
 })
+}
+
+//btnAnimation()
+
+function page2Animation() {
+let rightElems = document.querySelectorAll(".right-elem")
+rightElems.forEach(function(elem) {
+    elem.addEventListener("mouseenter", function() {
+        gsap.to(elem.childNodes[3], {
+            opacity : 1,
+            scale : 1
+        })
+    })
+    elem.addEventListener("mouseleave", function() {
+        gsap.to(elem.childNodes[3], {
+            opacity : 0, 
+            scale : 0
+        })
+    })
+    elem.addEventListener("mousemove", function(dets) {
+        gsap.to(elem.childNodes[3], {
+            x : dets.x -  elem.getBoundingClientRect().x - 40,
+            y : dets.y - elem.getBoundingClientRect().y - 125
+        })
+    })
+})
+}
+
+// page2Animation()
+
+function page3Animation(){
+    let page3Center = document.querySelector(".page3-center")
+    let page3Video = document.querySelector("#page3 video")
+
+    page3Center.addEventListener("click", function(){
+        page3Video.play()
+    // page3Video.style.position = "fixed"
+        gsap.to(page3Video, {
+            transform : "scaleX(1) scaleY(1)",
+            opacity : 1,
+            borderRadius : 0
+        })
+    })
+    page3Video.addEventListener("click", function() {
+        page3Video.pause()
+        gsap.to(page3Video, {
+            transform : "scaleX(0.7) scaleY(0)",
+            opacity : 0,
+            borderRadius : "30px"
+        })
+    })
+}
+
+page3Animation()

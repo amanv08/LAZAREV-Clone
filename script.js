@@ -111,7 +111,7 @@ rightElems.forEach(function(elem) {
 })
 }
 
-// page2Animation()
+//page2Animation()
 
 function page3Animation(){
     let page3Center = document.querySelector(".page3-center")
@@ -136,4 +136,4 @@ function page3Animation(){
     })
 }
 
-page3Animation()
+// page3Animation()
